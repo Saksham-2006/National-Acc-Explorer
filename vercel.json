@@ -1,0 +1,15 @@
+{
+  "buildCommand": "pnpm install && pnpm --filter @workspace/national-accounts run build",
+  "outputDirectory": "artifacts/national-accounts/dist/public",
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "REPLACE_WITH_YOUR_RENDER_URL/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
