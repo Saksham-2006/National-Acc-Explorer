@@ -5,6 +5,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import { Layout } from "@/components/Layout";
 import { Dashboard } from "@/pages/Dashboard";
+import { Reports } from "@/pages/Reports";
+import { Indicators } from "@/pages/Indicators";
+import { Regions } from "@/pages/Regions";
+import { Settings } from "@/pages/Settings";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,6 +23,10 @@ function Router() {
     <Layout>
       <Switch>
         <Route path="/" component={Dashboard} />
+        <Route path="/reports" component={Reports} />
+        <Route path="/indicators" component={Indicators} />
+        <Route path="/regions" component={Regions} />
+        <Route path="/settings" component={Settings} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
