@@ -3,6 +3,13 @@
 > An interactive, full-stack economic data visualization dashboard for exploring national accounting indicators including GDP, GNP, NDP, Inflation, and Unemployment (2015–2025).
 
 ---
+---
+
+## 🚀 Live Demo
+- 🌐 Website: https://national-acc-explorer-api-server.vercel.app/
+- 🌐 Frontend: https://national-acc-explorer-api-server.vercel.app/
+- ⚙️ Backend API: https://national-acc-explorer.onrender.com
+---
 
 ## 🌟 Features
 
