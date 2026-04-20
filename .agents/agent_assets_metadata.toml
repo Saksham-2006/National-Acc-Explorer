@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "2V4JbYSjU0fLOhdMgS0zj"
+uri = "file://.agents/outputs/national-accounts-analysis.md"
+type = "text"
+title = "National Accounts Economic Analysis Report (2015–2025)"
