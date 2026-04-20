@@ -1,0 +1,71 @@
+Create a full-stack web application called "National Accounts Dashboard".
+
+PROJECT GOAL:
+Build an interactive dashboard that visualizes key national economic indicators such as GDP, GNP, NDP, sector-wise contribution, inflation rate, and unemployment rate. The dashboard should be clean, modern, and user-friendly.
+
+TECH STACK:
+Frontend: React (with Tailwind CSS)
+Backend: Node.js with Express
+Database: MongoDB (or simple JSON storage if needed)
+Charts: Chart.js or Recharts
+
+FEATURES REQUIRED:
+
+1. Dashboard UI:
+- Create a responsive dashboard layout with sidebar and top navbar
+- Display cards for key metrics:
+  - GDP
+  - GNP
+  - NDP
+  - Inflation Rate
+  - Unemployment Rate
+
+2. Data Visualization:
+- Line chart for GDP growth over years
+- Pie chart for sector contribution (Agriculture, Industry, Services)
+- Bar chart for inflation and unemployment trends
+- Allow user to switch between years (e.g., 2015–2025)
+
+3. Data Handling:
+- Use mock/sample economic data initially
+- Store data in backend (MongoDB or JSON file)
+- Create API endpoints:
+  - GET /api/economic-data
+  - POST /api/economic-data (optional for admin)
+
+4. Filters & Interactions:
+- Dropdown to select year range
+- Filter by sector
+- Dynamic updates of charts based on selection
+
+5. Additional Features:
+- Dark/light mode toggle
+- Export dashboard data as CSV
+- Simple login page (optional, basic authentication)
+
+6. UI/UX:
+- Use Tailwind CSS for styling
+- Clean modern design (similar to analytics dashboards)
+- Use icons where appropriate
+
+7. File Structure:
+- Organize into:
+  /client (React frontend)
+  /server (Node backend)
+  /data (mock data if needed)
+
+8. Deployment:
+- Make it runnable on Replit
+- Provide clear instructions to start both frontend and backend
+
+BONUS (if possible):
+- Add real-world API integration (World Bank or IMF data)
+- Add prediction/forecast graph using simple linear regression
+
+OUTPUT:
+- Fully working project code
+- Instructions to run
+- Sample data included
+
+IMPORTANT:
+Keep the project simple but functional. Focus on clean UI, correct charts, and working API.

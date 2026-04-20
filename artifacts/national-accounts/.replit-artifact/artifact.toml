@@ -1,0 +1,31 @@
+kind = "data-app"
+previewPath = "/"
+title = "National Accounts Dashboard"
+version = "1.0.0"
+id = "artifacts/national-accounts"
+router = "path"
+
+[[integratedSkills]]
+name = "data-visualization"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23001
+
+[services.development]
+run = "pnpm --filter @workspace/national-accounts run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/national-accounts", "run", "build" ]
+publicDir = "artifacts/national-accounts/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23001"
+BASE_PATH = "/"

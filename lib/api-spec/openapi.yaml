@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: National Accounts Dashboard API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: economic
+    description: Economic data operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,84 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /economic-data:
+    get:
+      operationId: getEconomicData
+      tags: [economic]
+      summary: Get economic data
+      description: Returns economic indicators for all years or filtered by year range
+      parameters:
+        - name: startYear
+          in: query
+          schema:
+            type: ["integer", "null"]
+          description: Start year filter
+        - name: endYear
+          in: query
+          schema:
+            type: ["integer", "null"]
+          description: End year filter
+      responses:
+        "200":
+          description: Economic data records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EconomicRecord"
+
+  /economic-data/summary:
+    get:
+      operationId: getEconomicSummary
+      tags: [economic]
+      summary: Get latest economic summary
+      description: Returns the latest year's key metrics as a summary
+      responses:
+        "200":
+          description: Summary of latest economic indicators
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EconomicSummary"
+
+  /economic-data/sectors:
+    get:
+      operationId: getSectorData
+      tags: [economic]
+      summary: Get sector contribution data
+      description: Returns sector breakdown data (Agriculture, Industry, Services)
+      parameters:
+        - name: year
+          in: query
+          schema:
+            type: ["integer", "null"]
+          description: Year to get sector data for
+      responses:
+        "200":
+          description: Sector contribution data
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SectorRecord"
+
+  /economic-data/trends:
+    get:
+      operationId: getEconomicTrends
+      tags: [economic]
+      summary: Get economic trends
+      description: Returns aggregated trend data for charts
+      responses:
+        "200":
+          description: Economic trend data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EconomicTrends"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +114,114 @@ components:
       required:
         - status
 
+    EconomicRecord:
+      type: object
+      properties:
+        year:
+          type: integer
+        gdp:
+          type: number
+          description: GDP in billions USD
+        gnp:
+          type: number
+          description: GNP in billions USD
+        ndp:
+          type: number
+          description: NDP in billions USD
+        inflationRate:
+          type: number
+          description: Inflation rate as percentage
+        unemploymentRate:
+          type: number
+          description: Unemployment rate as percentage
+        gdpGrowthRate:
+          type: number
+          description: Year-over-year GDP growth rate as percentage
+      required:
+        - year
+        - gdp
+        - gnp
+        - ndp
+        - inflationRate
+        - unemploymentRate
+        - gdpGrowthRate
+
+    EconomicSummary:
+      type: object
+      properties:
+        latestYear:
+          type: integer
+        gdp:
+          type: number
+        gnp:
+          type: number
+        ndp:
+          type: number
+        inflationRate:
+          type: number
+        unemploymentRate:
+          type: number
+        gdpGrowthRate:
+          type: number
+        gdpChange:
+          type: number
+          description: Change from previous year
+        inflationChange:
+          type: number
+        unemploymentChange:
+          type: number
+      required:
+        - latestYear
+        - gdp
+        - gnp
+        - ndp
+        - inflationRate
+        - unemploymentRate
+        - gdpGrowthRate
+        - gdpChange
+        - inflationChange
+        - unemploymentChange
+
+    SectorRecord:
+      type: object
+      properties:
+        year:
+          type: integer
+        sector:
+          type: string
+        value:
+          type: number
+          description: Contribution value in billions USD
+        percentage:
+          type: number
+          description: Percentage of total GDP
+      required:
+        - year
+        - sector
+        - value
+        - percentage
+
+    EconomicTrends:
+      type: object
+      properties:
+        gdpTrend:
+          type: array
+          items:
+            $ref: "#/components/schemas/EconomicRecord"
+        inflationTrend:
+          type: array
+          items:
+            $ref: "#/components/schemas/EconomicRecord"
+        sectorTrend:
+          type: array
+          items:
+            $ref: "#/components/schemas/SectorRecord"
+        availableYears:
+          type: array
+          items:
+            type: integer
+      required:
+        - gdpTrend
+        - inflationTrend
+        - sectorTrend
+        - availableYears
