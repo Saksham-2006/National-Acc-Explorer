@@ -2,8 +2,6 @@
 
 > An interactive, full-stack economic data visualization dashboard for exploring national accounting indicators including GDP, GNP, NDP, Inflation, and Unemployment (2015–2025).
 
-![Dashboard Overview](docs/screenshots/dashboard_top.png)
-
 ---
 
 ## 🌟 Features
